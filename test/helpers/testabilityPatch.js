@@ -3,26 +3,6 @@
 
 if (window.bindJQuery) bindJQuery();
 
-var supportTests = {
-  classes: '/^class\\b/.test((class C {}).toString())',
-  fatArrow: 'a => a',
-  ES6Function: '({ fn(x) { return; } })'
-};
-
-var support = {};
-
-for (var prop in supportTests) {
-  if (supportTests.hasOwnProperty(prop)) {
-    try {
-      // eslint-disable-next-line no-eval
-      support[prop] = !!eval(supportTests[prop]);
-    } catch (e) {
-      support[prop] = false;
-    }
-  }
-}
-
-
 beforeEach(function() {
 
   // all this stuff is not needed for module tests, where jqlite and publishExternalAPI and jqLite are not global vars
@@ -49,7 +29,7 @@ afterEach(function() {
   // These Nodes are persisted across tests.
   // They used to be assigned a `$$hashKey` when animated, which we needed to clear after each test
   // to avoid affecting other tests. This is no longer the case, so we are just ensuring that there
-  // is indeed no `$$hachKey` on them.
+  // is indeed no `$$hashKey` on them.
   var doc = window.document;
   var html = doc.querySelector('html');
   var body = doc.body;
